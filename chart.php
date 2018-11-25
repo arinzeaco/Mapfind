@@ -2,7 +2,6 @@
 include 'config.php';
 
 $u_id = $_POST['u_id'];
-$like_uid=$_POST['like_uid'];
 
     $query = " SELECT * FROM user WHERE u_id IN 
             (SELECT 
@@ -26,10 +25,13 @@ $like_uid=$_POST['like_uid'];
     }
 $rows = $stmt->fetchAll();
 
-if ($rows) {
-    $response["status"] = 1;
-    $response["message"] = "Post Available!";
-    echo json_encode($response);
+    if ($rows) {
+        $response["status"] = 1;
+        $response["message"] = "Post Available!";
+        foreach ($rows as $row) {
+            $response["data"] = $rows;
+        }
+        echo json_encode($response);
 
 } else {
     $response["success"] = 2;
