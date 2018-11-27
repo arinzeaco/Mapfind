@@ -19,7 +19,7 @@ include 'config.php';
             ':u_id' => $u_id,
             ':avatar' =>$final_link,
         ]);
-      //  if (!array_key_exists($ext, $allowed)) die("Error: Please select a valid file format.");
+        if (!array_key_exists($ext, $allowed)) die("Error: Please select a valid image.");
 
             move_uploaded_file($_FILES["image"]["tmp_name"], "avatar/" . $u_id. ".". $ext);
 
