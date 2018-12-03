@@ -7,7 +7,7 @@ $latitude = $_POST['latitude'];
 $distance = $_POST['distance'];
 
 
-if($_POST['profession']=="any"){
+if($_POST['profession']=="any profession"){
     $profession="IN (SELECT profession FROM user)";
 }else{
     $profession="IN (SELECT profession FROM user WHERE profession = '".$profession."')";
