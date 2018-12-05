@@ -29,31 +29,7 @@ $stmt = $db->prepare("SELECT * FROM user WHERE phone = :phone");
               echo json_encode($response);
           }
 }
- function update($db,$id,$image){
 
-     if(isset($_FILES["image"]) && $_FILES["image"]["error"] == 0){
-         $allowed = array("jpg" => "image/jpg", "jpeg" => "image/jpeg", "gif" => "image/gif", "png" => "image/png");
-         $filename = $_FILES["image"]["name"];
-         $filetype = $_FILES["image"]["type"];
-         $filesize = $_FILES["image"]["size"];
-
-         // Verify file extension
-         $ext = pathinfo($filename, PATHINFO_EXTENSION);
-         $ima="http://192.168.40.101/avatar/";
-         //$ima="http://192.168.43.87/better/";
-         $final_link=$ima."image/" .$id."_8.".$ext;
-         $query = "INSERT INTO user ( post_id, image_url ) VALUES ( $id, '$final_link' )";
-         $stmt   = $db->prepare($query);
-         $result = $stmt->execute();
-         if(!array_key_exists($ext, $allowed)) die("Error: Please select a valid file format.");
-         if(in_array($filetype, $allowed)){
-             move_uploaded_file($_FILES["image8"]["tmp_name"], "image/" .$id."_8.".$ext);
-             echo "Your file was uploaded successfully.";
-         } else{
-             echo "Error: There was a problem uploading your file. Please try again.";
-         }
-     }
- }
 function update($db,$id,$image){
 
     if(isset($_FILES["image"]) && $_FILES["image"]["error"] == 0){

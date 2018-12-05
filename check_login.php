@@ -5,6 +5,7 @@ include 'config.php';
   		$name=$_POST['name'];
 		$email =$_POST['email'];
         $avatars = $_POST['avatars'];
+        $phone = $_POST['phone'];
 	  //  $brief = $_POST['brief'];
        try {
             $stmt = $db->prepare("SELECT * FROM user WHERE u_id = :u_id");
@@ -25,18 +26,32 @@ include 'config.php';
     
      
             }else{
-  
-		    $query="INSERT INTO user (u_id,email,name,avatar) VALUES (:u_id,:email,:name,:avatars)";
-			$stmt = $db->prepare($query);
-            $stmt->execute([
-                ':u_id' => $u_id,
-				':email' => $email,
-				':name' => $name,
-				':avatars' =>$avatars
-            ]);
-		  $response["status"] = 1;
-		  $response["message"]="Welcome to snap find";
-		  echo json_encode($response);
+                $query="INSERT INTO user (u_id,email,name,avatar,phone) VALUES (:u_id,:email,:name,:avatars,:phone)";
+                $stmt = $db->prepare($query);
+                $stmt->execute([
+                    ':u_id' => $u_id,
+                    ':email' => $email,
+                    ':name' => $name,
+                    ':avatars' =>$avatars,
+                    ':phone' =>$phone
+                ]);
+
+                $stmt = $db->prepare("SELECT * FROM user WHERE u_id = :u_id");
+
+                $stmt->execute([
+                    ':u_id' => $u_id
+                ]);
+
+                if ($stmt->rowCount()) {
+                    $row = $stmt->fetchAll();
+
+
+                    $response["status"] = 1;
+                    $response["data"] = $row[0];
+                    $response["message"] = "Login Succesfull to snap find";
+                    echo json_encode($response);
+
+                }
 			}
        } catch (PDOException $e) {
 
