@@ -8,8 +8,8 @@ include 'config.php';
 	    $brief = $_POST['brief'];
         $phone = $_POST['phone'];
         $address = $_POST['address'];
-$longitude = $_POST['longitude'];
-$latitude = $_POST['latitude'];
+        $longitude = $_POST['longitude'];
+        $latitude = $_POST['latitude'];
 
        try {
        

@@ -34,7 +34,7 @@ $rows = $stmt->fetchAll();
         echo json_encode($response);
 
 } else {
-    $response["success"] = 2;
+    $response["status"] = 2;
     $response["message"] = "Failed";
     die(json_encode($response));
 }
