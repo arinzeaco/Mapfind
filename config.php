@@ -23,6 +23,7 @@ if(isset($_SERVER['REQUEST_METHOD'])){
 
 $PRODUCTION = true;
 
+
 if($PRODUCTION){
     //Heroku
     $db = new PDO("mysql:host=localhost;dbname=thecode1_mapfind", "thecode1_admin", "1313nzeaco", [
