@@ -11,8 +11,8 @@ include 'config.php';
 // Verify file extension
         $ext = pathinfo($filename, PATHINFO_EXTENSION);
       //  $ima = "http://192.168.1.102/maphpandroid/";
-        $ima = "http://192.168.1.102/maphpandroid/";
-        $final_link = $ima . "avatar/" . $u_id .".". $ext;
+
+        $final_link = "www.thecodelogic.com/maphpandroid/avatar/" . $u_id .".". $ext;
         $query =  "UPDATE user SET avatar=:avatar Where u_id=:u_id";
         $stmt = $db->prepare($query);
         $stmt->execute([

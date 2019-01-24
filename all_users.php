@@ -25,15 +25,21 @@ FROM user WHERE profession $profession HAVING distance > $distance ORDER BY dist
 
     ]);
     $rows = $stmt->fetchAll();
-
+    $count = $stmt->rowCount();
     if ($rows) {
         $response["status"] = 1;
         $response["message"] = "Post Available!";
+        $response["message"] =  $count ;
+
         foreach ($rows as $row) {
             $response["data"] = $rows;
         }
         echo json_encode($response);
 
+    }else{
+        $response["status"] = 2;
+        $response["message"] = "No Post Available!";
+        echo json_encode($response);
     }
 } catch (PDOException $e) {
 
