@@ -21,19 +21,9 @@ if(isset($_SERVER['REQUEST_METHOD'])){
     }
 }
 
-$PRODUCTION = true;
+ $db = new PDO("mysql:host=localhost;dbname=findmap", "root", "", [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ
+        ]);
 
-
-if($PRODUCTION){
-    //Heroku
-    $db = new PDO("mysql:host=localhost;dbname=thecode1_mapfind", "thecode1_admin", "1313nzeaco", [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ
-    ]);
-}else{
-    $db = new PDO("mysql:host=localhost;dbname=findmap", "root", "", [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ
-    ]);
-}
 ?>
